@@ -29,21 +29,24 @@ MAGVIEW 不仅仅是一个配件买卖系统，它是全球重卡（中国制造
 对接全球供应链，建立从配件查询、报价到跨境物流的一站式闭环。
 4. 商业壁垒 (The Moat)
 你最大的护城河不是“卖配件”，而是你手中那份：“10万张零件原图 + 2万个物理件 UID + 10万个主机厂 OE 映射关系”的工业级数据资产。这是目前中国重卡海外售后市场最稀缺的东西。
-```mermaid    
-graph TD    
-A[现场：旧零件采集] -->|标准化拍摄| B(物理采集层)    
-B -->|光影处理/多维构图| C{特征提取层}        
-subgraph AI_Engine [AI 视觉核心引擎]    
-C -->|全局分类| D[零件大类识别]    
-C -->|局部显著性定位| E[编码/特征细节提取]    
-D & E --> F[特征向量生成]    
-end        
-F -->|特征匹配| G[(数字孪生数据库)]    
-G -->|查询关联映射| H{业务决策层}        
-H -->|输出| I[OEM零件号]    
-H -->|输出| J[跨境采购/库存状态]    
-H -->|输出| K[装配参数/指导]        
-style AI_Engine fill:#f9f,stroke:#333,stroke-width:2px    
-style G fill:#bbf,stroke:#333,stroke-width:2px    
-style A fill:#dfd,stroke:#333
-```
+```mermaid
+graph TD
+    A[现场：旧零件采集] --> B(物理采集层)
+    B --> C{特征提取层}
+    
+    subgraph AI_Engine [AI 视觉核心引擎]
+        C --> D[零件大类识别]
+        C --> E[编码细节提取]
+        D & E --> F[特征向量生成]
+    end
+    
+    F --> G[(数字孪生数据库)]
+    G --> H{业务决策层}
+    
+    H --> I[OEM零件号]
+    H --> J[跨境采购]
+    H --> K[装配参数]
+
+    style AI_Engine fill:#f9f,stroke:#333
+    style G fill:#bbf,stroke:#333
+    style A fill:#dfd,stroke:#333
