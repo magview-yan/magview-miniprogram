@@ -35,7 +35,8 @@ MAGVIEW 不仅仅是一个配件买卖系统，它是全球重卡（中国制造
 1. 商业清晰：它告诉别人，你通过 UID 整合了杂乱的数据，解决了行业最大的匹配难题。
 2. 技术落地：它明确了“先数据后 AI”、“先人工后自动化”的务实执行方针。
 3. 可扩展性：通过“多站点”和“全球化预留”，你的项目可以从刚果（金）轻松复制到中东、南美，甚至全球。
-```mermaidgraph TD
+```mermaid
+    graph TD
     A[现场：旧零件采集] -->|标准化拍摄| B(物理采集层)
     B -->|光影处理/多维构图| C{特征提取层}
     
@@ -54,4 +55,5 @@ MAGVIEW 不仅仅是一个配件买卖系统，它是全球重卡（中国制造
     
     style AI_Engine fill:#f9f,stroke:#333,stroke-width:2px
     style G fill:#bbf,stroke:#333,stroke-width:2px
-    style A fill:#dfd,stroke:#333```
+    style A fill:#dfd,stroke:#333
+```
