@@ -30,109 +30,26 @@ MAGVIEW 不仅仅是一个配件买卖系统，它是全球重卡（中国制造
 4. 商业壁垒 (The Moat)
 你最大的护城河不是“卖配件”，而是你手中那份：“10万张零件原图 + 2万个物理件 UID + 10万个主机厂 OE 映射关系”的工业级数据资产。这是目前中国重卡海外售后市场最稀缺的东西。
 ```mermaid
+# 🔧 AI核心系统架构 (Technical Layer Enhancement)
+
+```mermaid
 graph TD
-    A[现场：旧零件采集] --> B(物理采集层)
-    B --> C{特征提取层}
+    A[现场：旧零件采集] --> B(标准化硬件采集层)
+    B --> C{特征预处理}
     
     subgraph AI_Engine [AI 视觉核心引擎]
         C --> D[零件大类识别]
-        C --> E[编码细节提取]
-        D & E --> F[特征向量生成]
+        C --> E[边缘与编码提取]
+        D & E --> F[特征向量生成 Embedding]
     end
     
-    F --> G[(数字孪生数据库)]
-    G --> H{业务决策层}
+    F --> G[(Milvus/FAISS 向量数据库)]
+    G --> H{业务决策映射层}
     
-    H --> I[OEM零件号]
-    H --> J[跨境采购]
-    H --> K[装配参数]
+    H --> I[OEM 零件号映射]
+    H --> J[跨境供应链对接]
+    H --> K[装配与兼容性参数]
 
-    style AI_Engine fill:#f9f,stroke:#333
-    style G fill:#bbf,stroke:#333
-    style A fill:#dfd,stroke:#333
-
----
-
-# 🔧 AI核心系统架构（Technical Layer Enhancement）
-
-在现有“数据采集 → UID编码 → AI识别 → 供应链映射”的体系之上，我们引入一套可扩展的视觉索引引擎（Visual Indexing Engine），作为 MAGVIEW 的技术底座。
-
-## 1️⃣ 数据输入层（Image Acquisition Layer）
-- 来源：维修现场 / 工厂 / 仓库
-- 数据类型：零件照片（多角度）、局部特征（磨损 / 编码 / 标识）
-- 预处理：裁剪（ROI）、透视校正、去噪
-
----
-
-## 2️⃣ 特征表达层（Embedding Layer）
-- 使用深度学习模型将图像转化为向量表示（Feature Embedding）
-- 表达内容包括：
-  - 结构形状（Geometry）
-  - 表面纹理（Texture）
-  - OCR编码特征（如刻字 / 标签）
-- 输出：统一维度的向量（Vector Representation）
-
-👉 这一层是“视觉 → 数据”的核心桥梁
-
----
-
-## 3️⃣ 向量索引层（Vector Index Layer）
-- 将Embedding存储至向量数据库（Vector Database）
-- 技术选型（候选）：
-  - FAISS（本地高性能）
-  - Milvus（分布式扩展）
-- 支持：
-  - 百万级 / 千万级数据规模
-  - 高速近似最近邻搜索（ANN）
-
----
-
-## 4️⃣ 相似检索引擎（Similarity Search Engine）
-输入：
-- 用户上传图片
-
-流程：
-- 图像 → embedding → 向量检索
-
-输出：
-- Top-K相似零件
-- 相似度评分（Similarity Score）
-
----
-
-## 5️⃣ 语义映射层（Mapping Layer）
-- 将检索结果映射至：
-  - OEM编号
-  - 通用件编码
-  - 替代件关系
-- 构建：
-  - “图像 → 零件 → 供应链”三层连接
-
----
-
-## 6️⃣ 持续学习机制（Continuous Learning Loop）
-- 用户确认结果（人工反馈）
-- 自动优化模型（Re-ranking / Fine-tuning）
-- 数据越多，系统越精准（Data Flywheel）
-
----
-
-# 🧠 技术定位（Key Insight）
-
-MAGVIEW 并非传统工业视觉检测系统，而是：
-
-👉 **一个“面向工业零件的视觉搜索引擎（Visual Search Engine）”**
-
-区别于：
-- 传统CV：检测缺陷 / 分类
-- MAGVIEW：建立全球零件的“视觉索引与连接关系”
-
----
-
-# 🚀 系统目标（Scalability Target）
-
-- 支持：100万+ 零件图像索引
-- 延迟：<1秒相似检索
-- 架构：可扩展至全球分布式数据节点
-
----
+    style AI_Engine fill:#f9f,stroke:#333,stroke-width:2px
+    style G fill:#bbf,stroke:#333,stroke-width:2px
+    style A fill:#dfd,stroke:#333,stroke-width:2px
