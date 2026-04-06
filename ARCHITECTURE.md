@@ -50,19 +50,3 @@ graph TD
     style AI_Engine fill:#f9f,stroke:#333
     style G fill:#bbf,stroke:#333
     style A fill:#dfd,stroke:#333
-Core AI System Design:
-
-Step 1: Image Input
-- Capture mechanical parts images
-
-Step 2: Feature Extraction (Embedding)
-- Use deep learning models to convert images into vectors
-
-Step 3: Vector Indexing
-- Store embeddings in vector database (FAISS / Milvus)
-
-Step 4: Similarity Search
-- Retrieve similar parts based on vector similarity
-
-Step 5: Result Mapping
-- Match to OEM / part database
